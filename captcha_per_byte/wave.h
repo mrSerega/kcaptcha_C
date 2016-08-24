@@ -1,8 +1,12 @@
 #include <cmath>
 
 #include "randoms.h"
+#include "castomsin.h"
+#define sin _sin_asm
 
 #include "defines.h"
+
+#include <iostream>
 
 #ifndef WAVE_H_23082016
 #define WAVE_H_23082016
@@ -23,52 +27,90 @@ dword* wave(dword* data, int width, int height, dword bgc){
     register double dx_amplitude = amplitude();
     register double dy_amplitude = amplitude();
     //init
+    //sin tab
+    double dx_x[width];
+    double dy_x[width];
+    for(int x=0;x<width;x++){
+    	dx_x[x]=sin(x * dx_period_x + dx_phase_x);
+    	dy_x[x]=sin(x * dy_period_x + dy_phase_x);
+	}
+	double dx_y[height];
+	double dy_y[height];
+	for(int y=0;y<height;y++){
+		dx_y[y] = sin(y * dx_period_y + dx_phase_y);
+		dy_y[y] = sin(y * dy_period_y + dy_phase_y);
+	}
     //color diff
     for(register int x=0;x<width;x++){
         for(register int y=0;y<height;y++){
-            dword color_diff = bgc - data[x+y*width];
+            dword color_diff = bgc-data[x+y*width];
             if(!color_diff){
                 continue;
-                newData[x+y*width]=bgc;
             }
-            //source x (double)
-            //int sinxstart = clock();
-            double dx_x = sin(x * dx_period_x + dx_phase_x);
-            double dx_y = sin(y * dx_period_y + dx_phase_y);
-            //cout<<clock()-sinxstart;
-            double sx = x + (dx_x + dx_y) * dx_amplitude;
+            double sx = x + (dx_x[x] + dx_y[y]) * dx_amplitude;
             if(!((0<=sx) && (sx<width-1))){
                 continue;
-                 newData[x+y*width]=bgc;
             }
-            //source y (double)
-            //int sinystart = clock();
-            double dy_x = sin(x * dy_period_x + dy_phase_x);
-            double dy_y = sin(y * dy_period_y + dy_phase_y);
-            //cout<<clock()-sinystart;
-        	double sy = y + (dy_x + dy_y) * dy_amplitude;
+        	double sy = y + (dy_x[x] + dy_y[y]) * dy_amplitude;
             if(!((0<=sy) && (sy<height-1))){
                 continue;
-                 newData[x+y*width]=bgc;
             }
             //
             int sx_i = int(sx);
             int sy_i = int(sy);
-            double frx = sx - sx_i;
-            double fry = sy - sy_i;
+            //double frx = sx - sx_i;
+            //double fry = sy - sy_i;
+            double frx =  sx_i;
+            double fry =  sy_i;
             int idx1 = sx_i + width*sy_i;
             int idx2 = idx1 + width;
-            dword tmp = (dword)(color_diff * (1-frx) * (1-fry)); 
-            newData[idx1] -= tmp;
+            //dword tmp = (dword)(color_diff * (1-frx) * (1-fry)); 
+            dword tmp = (dword)(color_diff * (1-frx)); 
+            newData[idx1] = tmp;
+            
+			//tmp = (dword)(color_diff * frx * (1-fry));
+			tmp = (dword)(color_diff * frx);
+            newData[(idx1+1)] = tmp;
+            
+			//tmp = (dword)(color_diff * (1-frx) * fry);
+			tmp = (dword)(color_diff * fry);
+            newData[idx2] = frx;
+            
+			//tmp = (dword)(color_diff * frx * fry);
+			tmp = (dword)(color_diff *  fry);
+            newData[(idx2+1)] = tmp;
+            /*//========================================================
+            color_diff = data[x+y*width]-bgc;
+            if(!color_diff){
+                continue;
+            }
+            sx = x + (dx_x[x] + dx_y[y]) * dx_amplitude;
+            if(!((0<=sx) && (sx<width-1))){
+                continue;
+            }
+        	sy = y + (dy_x[x] + dy_y[y]) * dy_amplitude;
+            if(!((0<=sy) && (sy<height-1))){
+                continue;
+            }
+            //
+            sx_i = int(sx);
+            sy_i = int(sy);
+            frx = sx - sx_i;
+            fry = sy - sy_i;
+            idx1 = sx_i + width*sy_i;
+            idx2 = idx1 + width;
+            tmp = 0xffffffff;
+            newData[idx1] = tmp;
             
 			tmp = (dword)(color_diff * frx * (1-fry));
-            newData[(idx1+1)] -= tmp;
+            newData[(idx1+1)] = tmp;
             
 			tmp = (dword)(color_diff * (1-frx) * fry);
-            newData[idx2] -= tmp;
+            newData[idx2] = tmp;
             
 			tmp = (dword)(color_diff * frx * fry);
-            newData[(idx2+1)] -= tmp;
+            newData[(idx2+1)] = tmp;
+            //===================================================*/
         }
     }
     return newData;
