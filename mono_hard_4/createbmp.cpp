@@ -8,32 +8,64 @@
 
 using namespace std;
 
+struct bmp{
+	
+	int width;
+	int height;
+	
+	BITMAPFILEHEADER bitmapFileHeader;
+	BITMAPINFOHEADER bitmapInfoHeader;
+	
+	size_t bitmapFileHeaderSize;
+	size_t bitmapInfoHeaderSize;
+	
+	char* fileheader;
+	char* infoheader;
+	
+	int filesize;
+    
+    bmp(int _width, int _height){
+    	
+		width=_width;
+    	height=_height;
+    	
+    	filesize = width*height*3;
+    	
+    	bitmapFileHeaderSize = sizeof(bitmapFileHeader);
+    	bitmapInfoHeaderSize = sizeof(bitmapInfoHeader);
+    	
+    	memset( &bitmapFileHeader, 0, bitmapFileHeaderSize );
+    	bitmapFileHeader.bfType = ( 'B' | 'M' << 8 );
+    	bitmapFileHeader.bfOffBits = bitmapFileHeaderSize + bitmapInfoHeaderSize;
+    	bitmapFileHeader.bfSize = bitmapFileHeader.bfOffBits + width * height * 3;
+
+    
+    	memset( &bitmapInfoHeader, 0, bitmapInfoHeaderSize );
+    	bitmapInfoHeader.biSize = bitmapInfoHeaderSize;
+    	bitmapInfoHeader.biWidth = width;
+    	bitmapInfoHeader.biHeight = height;
+    	bitmapInfoHeader.biPlanes = 1;
+    	bitmapInfoHeader.biBitCount = 24;
+    	
+    	fileheader = reinterpret_cast< char * >(&bitmapFileHeader);
+    	infoheader = reinterpret_cast< char * >(&bitmapInfoHeader);
+	}
+};
+
 struct Alphabet{
 	byte alphabet[26][32*64];
 };
 
-void createBitmap( byte * imageData, const char * filename, int width, int height )
+void createBitmap( byte * imageData, const char * filename, int width, int height, bmp* _bmp )
 {
-    BITMAPFILEHEADER bitmapFileHeader;
-    memset( &bitmapFileHeader, 0, sizeof( bitmapFileHeader ) );
-    bitmapFileHeader.bfType = ( 'B' | 'M' << 8 );
-    bitmapFileHeader.bfOffBits = sizeof( BITMAPFILEHEADER ) + sizeof( BITMAPINFOHEADER );
-    bitmapFileHeader.bfSize = bitmapFileHeader.bfOffBits + width * height * 3;
-
-    BITMAPINFOHEADER bitmapInfoHeader;
-    memset( &bitmapInfoHeader, 0, sizeof( bitmapInfoHeader ) );
-    bitmapInfoHeader.biSize = sizeof( BITMAPINFOHEADER );
-    bitmapInfoHeader.biWidth = width;
-    bitmapInfoHeader.biHeight = height;
-    bitmapInfoHeader.biPlanes = 1;
-    bitmapInfoHeader.biBitCount = 24;
+    
 
     std::ofstream file( filename, std::fstream::binary );
 
-    file.write( reinterpret_cast< char * >( &bitmapFileHeader ), sizeof( bitmapFileHeader ) );
-    file.write( reinterpret_cast< char * >( &bitmapInfoHeader ), sizeof( bitmapInfoHeader ) );
+    file.write( _bmp->fileheader, _bmp->bitmapFileHeaderSize );
+    file.write( _bmp->infoheader, _bmp->bitmapInfoHeaderSize );
 
-    file.write( (const char*)imageData, width * height * 3 );
+    file.write( (const char*)imageData, _bmp->filesize );
 
 }
 
@@ -95,6 +127,8 @@ int main( int argc, const char * argv[] )
     
 	int width = 128; 
     int height = 64;
+    
+    bmp _bmp(width,height);
 
     byte imageData[ width * height ];
 
@@ -109,7 +143,7 @@ int main( int argc, const char * argv[] )
 	
 	int start_test = clock();
 	
-	for(int i=0;i<1000;i++){//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	for(register int i=0;i<1000;i++){//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	int start = clock();//=============================================================
 	
@@ -117,10 +151,11 @@ int main( int argc, const char * argv[] )
 		text[i] = rand()%26;
 	}
 
-	for(int c=0;c<4;c++){
-			
-		for(int x=32*c;x<32*(c+1);x++){
-			for(int y=0;y<64;y++){
+	for(register int c=0;c<4;c++){
+		int xlwc=32*c;
+		int lwcpl1 = 32*(c+1);	
+		for(register int x=xlwc;x<lwcpl1;x++){
+			for(register int y=0;y<64;y++){
 					
 				int pos =  (x + y * 128);
 					
@@ -150,25 +185,37 @@ int main( int argc, const char * argv[] )
     double dx_amplitude = amplitude();
     double dy_amplitude = amplitude();
     //init
-    //color diff
+    //calc sin
+    double dx_x[width];
+    double dy_x[width];
     for(int x=0;x<width;x++){
-        for(int y=0;y<height;y++){
+    	dx_x[x]=sin(x * dx_period_x + dx_phase_x);
+    	dy_x[x]=sin(x * dy_period_x + dy_phase_x);
+	}
+	double dx_y[height];
+	double dy_y[height];
+	for(int y=0;y<height;y++){
+		dx_y[y] = sin(y * dx_period_y + dx_phase_y);
+		dy_y[y] = sin(y * dy_period_y + dy_phase_y);
+	}
+	//rutine
+	int wsub1 = width-1;
+	int hsub1 = height-1;
+    //color diff
+    for(register int x=0;x<width;x++){
+        for(register int y=0;y<height;y++){
             int color_diff = 0xff - imageData[x+y*width];
             if(!color_diff){
                 continue;
             }
             //source x (double)
-            double dx_x = sin(x * dx_period_x + dx_phase_x);
-            double dx_y = sin(y * dx_period_y + dx_phase_y);
-            double sx = x + (dx_x + dx_y) * dx_amplitude;
-            if(!((0<=sx) && (sx<width-1))){
+            double sx = x + (dx_x[x] + dx_y[y]) * dx_amplitude;
+            if(!((0<=sx) && (sx<wsub1))){
                 continue;
             }
             //source y (double)
-            double dy_x = sin(x * dy_period_x + dy_phase_x);
-            double dy_y = sin(y * dy_period_y + dy_phase_y);
-        	double sy = y + (dy_x + dy_y) * dy_amplitude;
-            if(!((0<=sy) && (sy<height-1))){
+        	double sy = y + (dy_x[x] + dy_y[y]) * dy_amplitude;
+            if(!((0<=sy) && (sy<hsub1))){
                 continue;
             }
             //
@@ -179,28 +226,32 @@ int main( int argc, const char * argv[] )
             int idx1 = sx_i + width*sy_i;
             int idx2 = idx1 + width;
             int tmp = int(color_diff * (1-frx) * (1-fry)); 
-            newData[3*idx1] -= tmp;
-            newData[3*idx1+1] -=tmp;
-            newData[3*idx1+2] -=tmp;
+            int idx13=idx1*3;
+            newData[idx13] -= tmp;
+            newData[idx13+1] -=tmp;
+            newData[idx13+2] -=tmp;
             tmp = int(color_diff * frx * (1-fry));
-            newData[3*(idx1+1)] -= tmp;
-            newData[3*(idx1+1)+1] -= tmp;
-            newData[3*(idx1+1)+2] -= tmp;
+            int idx113=(idx1+1)*3;
+            newData[idx113] -= tmp;
+            newData[idx113+1] -= tmp;
+            newData[idx113+2] -= tmp;
             tmp = int(color_diff * (1-frx) * fry);
-            newData[3*idx2] -= tmp;
-            newData[3*idx2+1]-= tmp;
-            newData[3*idx2+2] -= tmp;
+            int idx23 = idx2*3;
+            newData[idx23] -= tmp;
+            newData[idx23+1]-= tmp;
+            newData[idx23+2] -= tmp;
             tmp = int(color_diff * frx * fry);
-            newData[3*(idx2+1)] -= tmp;
-            newData[3*(idx2+1)+1] -= tmp;
-            newData[3*(idx2+1)+2] -= tmp;
+            int idx213 = (idx2+1)*3;
+            newData[idx213] -= tmp;
+            newData[idx213+1] -= tmp;
+            newData[idx213+2] -= tmp;
             }
         }
 	}
 	
 	//cout<<"after wave save:"<<clock()-start<<endl;//======================================
 	
-	createBitmap( newData, "bitmap.bmp", width, height );
+	createBitmap( newData, "bitmap.bmp", width, height, &_bmp );
 	
 	//cout<<"after save:"<<clock()-start<<endl;//==============================================
 	
@@ -210,6 +261,9 @@ int main( int argc, const char * argv[] )
 	
 	cout<<"total time:"<<end_test-start_test<<endl;
 	cout<<"avg time:"<<(end_test-start_test)/1000.0<<endl;
+	
+	//char somevar;
+	//cin>>somevar;
 
     return 0;
 }
