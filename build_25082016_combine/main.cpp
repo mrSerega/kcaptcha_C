@@ -20,8 +20,6 @@
 
 using namespace std;
 
-void make_grad(char* word);
-
 int main(int argc, char* argv[]){
 	//declare service var
 	int length;
@@ -29,19 +27,19 @@ int main(int argc, char* argv[]){
 	//declare flags
 	enum Mode_flag{CIRC,GRAD,MONO};
 		/*
-		-CIRC - CAPTCHA with circles(rus:капча с кругами)
-		-GRAD - CPATCHA with gradient(rus:капча с градиентом)
-		-MONO - monochrome CPATCHA(rus:монохромная капча)
+		-CIRC - CAPTCHA with circles(rus:пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+		-GRAD - CPATCHA with gradient(rus:пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+		-MONO - monochrome CPATCHA(rus:пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 		*/
 	enum Rand_flag{Y,N};
 		/*
-		-Y - choose random CAPTCHA mode(rus:выбирать рандомный тип капчи)
-		-N - choose adjusted CAPTCHA mode(rus: выбирать заданный тип капчи)
+		-Y - choose random CAPTCHA mode(rus:пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+		-N - choose adjusted CAPTCHA mode(rus: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 		*/
 	enum Text_flag{GEN,ADJ};
 		/*
-		-GEN - generate random text for CPTCHA(rus:генерировать рандомный текст для капчи)
-		-ADJ - use adjusted text for CAPTCHA(rus: использовать заданный текст)
+		-GEN - generate random text for CPTCHA(rus:пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+		-ADJ - use adjusted text for CAPTCHA(rus: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 		*/
 	//init default
 	char dict[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
