@@ -7,3 +7,4 @@ width
 height
 num of letter
 order of alphabet(-1 = default order//TODO)
+alphabet composition

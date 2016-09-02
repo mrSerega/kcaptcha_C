@@ -27,7 +27,7 @@ public:
 		int bitmap_width = 0;
 		int bitmap_height= 0;
 		int letters_num  = 0;
-		int* order;
+		int* order;//order of letters in bitmap
 		
 		//create path to font bitmap
 		string bitmappath = FONTS_FOLDER_STR;
