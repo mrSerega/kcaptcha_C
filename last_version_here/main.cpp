@@ -43,11 +43,12 @@ int main(int argc, char* argv[]){
 		*/
 	//init default
 	char dict[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	string range = "a-z";
 	string font = "rt";
 	string word_str="test";
 	Mode_flag mode_flag = MONO;
 	Rand_flag rand_flag = Y;
-	Text_flag text_flag = ADJ;
+	Text_flag text_flag = GEN;
 	string filename = "captcha.bmp";
 	//init from args
 		//TODO
@@ -56,13 +57,15 @@ int main(int argc, char* argv[]){
 	//init alphabets	
 	dwordalphabet dwordAlphabet(font.data());
 	bytealphabet  byteAlphabet(font.data()); 
+	//make generator
+	Generator generator(dict);
+	generator.set_range(range.data());
 	//calculated vars
-	word_int = strToIntArr(word_str.data());
+	word_int = generator.strToIntArr(word_str.data());
 	int wordlen = strlen(word_str.data());
 	int letterHeight = dwordAlphabet._heightOfLetter;
 	int letterWidth = dwordAlphabet._lenOfLetter;
 	int pictureWidth = letterWidth*wordlen;
-	cout<<pictureWidth<<" "<<letterHeight<<endl;
 	//init bmp
 	Bmp bmp(pictureWidth,letterHeight);
 	//init backgroun colors
@@ -71,7 +74,13 @@ int main(int argc, char* argv[]){
 	//gen word if necessary
 	if(text_flag==GEN){
 		delete word_int;
-		word_int = genword(wordlen,dict);
+		word_int = generator.genword(wordlen);
+		
+		//test outpt###########################################
+		for(int i=0;i<wordlen;++i){
+			cout<<dict[word_int[i]];
+		}
+		//test output##########################################
 	}
 	//choose mode
 	if(rand_flag==Y){

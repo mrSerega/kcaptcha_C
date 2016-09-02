@@ -17,4 +17,8 @@ int strToInt(const char* str){
 	return sum;
 }
 
+int charToOrder(char c){//return order of letter in alphabet(default)
+	return int(c)-97;
+}
+
 #endif

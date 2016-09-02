@@ -5,7 +5,6 @@
 #define MONOWAVE_H_25082016
 
 unsigned char* monowave(unsigned char* imageData, int width, int height, unsigned char bgc){
-	cout<<width<<" "<<height<<endl;
  	unsigned char* newData = new unsigned char[width*height*3];
 	//period
     double dx_period_x = period();

@@ -9,41 +9,69 @@ using namespace std;
 #ifndef GENWORD_H_25082016
 #define GENWORD_H_25082016
 
-struct range{
+struct Generator{
+	const char* dict;
+	int dict_len;
 	
-};
-
-struct generator{
-	char* dict;
-	generator(char* _dict);
-	void set_range(char* _range);
+	Generator(const char* _dict);
+	//generator(char* _dict, char* _range);
+	
+	void set_range(const char* _range);
 	int* strToIntArr(const char* word);
-	int* genword(int len, char* dict);
+	int* genword(int len);
 };
 
-generator::generator(char* _dict){
-	dict = _dict
+Generator::Generator(const char* _dict):
+	dict(_dict)
+{
+	dict_len = strlen(dict);
 }
 
-void generator::set_range(char* _range){
+/*
+Generator::generator(char* _dict, char* _range){
+	dict = _dict;
+	dict_len = strlen(dict);
+	set_range(_range);
+}
+*/
+
+void Generator::set_range(const char* _range){
+	int range_str_len = strlen(_range);
 	
+	if (range_str_len == 3) {//first-last
+		if(_range[1]=='-'){
+			int first = charToOrder(_range[0]);
+			int last = charToOrder(_range[2]);
+			int len = last-first+1;
+			char tmp[len];
+			for(int i=first;i<=last;i++){
+				tmp[i-first]=dict[i];
+			}
+			dict = tmp;
+			dict_len = len;
+			return;
+		}
+	}
+
+	dict = _range;
+	dict_len  = range_str_len;
+	return;
 }
 
-int* generator::strToIntArr(const char* word){
+int* Generator::strToIntArr(const char* word){
 	int wordlen = strlen(word);
 	int* intword= new int[wordlen];
 	for(int i=0;i<wordlen;i++){
-		intword[i]=int(word[i])-97;
+		intword[i]=charToOrder(word[i]);
 	}
 	return intword;
 }
 
-int* generator::genword(int len, char* dict){
+int* Generator::genword(int len){
 	srand(time(0));
-	int dictlen = strlen(dict);
 	int* word = new int[len];
 	for(int i=0;i<len;i++){
-		word[i]=rand()%dictlen;
+		word[i]=rand()%dict_len;
 	}
 	return word;
 }
