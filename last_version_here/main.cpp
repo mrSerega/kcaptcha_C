@@ -15,6 +15,7 @@
 #include "circwave.h"
 #include "gentextformono.h"
 #include "monowave.h"
+#include "iniparser.h"
 
 #include "defines.h"
 
@@ -42,7 +43,7 @@ int main(int argc, char* argv[]){
 		-ADJ - use adjusted text for CAPTCHA(rus: ������������ �������� �����)
 		*/
 	//init default
-	char dict[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	string dict="abcdefghjiklmnopqrstuvwxyz";
 	string range = "a-z";
 	string font = "rt";
 	string word_str="test";
@@ -53,12 +54,34 @@ int main(int argc, char* argv[]){
 	//init from args
 		//TODO
 	//init from config
-		//TODO
+	IniParser iniparser(CONFIG_FILE_NAME);
+	string use_it = iniparser.get_value(COMMON_SECTION_NAME,USE);
+	if(use_it==USE_TRUE){
+		dict=iniparser.get_value(DEMON_SECTION_NAME,DICT_VARIABLE_NAME);
+		range=iniparser.get_value(DEMON_SECTION_NAME,RANGE_VARIABLE_NAME);
+		font=iniparser.get_value(COMMON_SECTION_NAME,FONT_VARIABLE_NAME);
+		word_str=iniparser.get_value(STANDALONE_SECTION_NAME,WORD_VARIABLE_NAME);
+	
+		string tmp_mode_flag = iniparser.get_value(STANDALONE_SECTION_NAME,MODE_FLAG);//mode
+		if(tmp_mode_flag==CIRC_FLAG) mode_flag=CIRC;
+		if(tmp_mode_flag==GRAD_FLAG) mode_flag=GRAD;
+		if(tmp_mode_flag==MONO_FLAG) mode_flag=MONO;
+
+		string tmp_random_flag = iniparser.get_value(STANDALONE_SECTION_NAME,RANDOM_FLAG);//mode
+		if(tmp_random_flag==Y_FLAG) rand_flag=Y;
+		if(tmp_random_flag==N_FLAG) rand_flag=N;
+	
+		string tmp_text_flag = iniparser.get_value(STANDALONE_SECTION_NAME,TEXT_FLAG);//mode
+		if(tmp_text_flag==GEN_FLAG) text_flag=GEN;
+		if(tmp_text_flag==ADJ_FLAG) text_flag=ADJ;
+	
+		filename=iniparser.get_value(COMMON_SECTION_NAME,FILE_NAME_VARIABLE_NAME);
+	}
 	//init alphabets	
 	dwordalphabet dwordAlphabet(font.data());
 	bytealphabet  byteAlphabet(font.data()); 
 	//make generator
-	Generator generator(dict);
+	Generator generator(dict.data());
 	generator.set_range(range.data());
 	//calculated vars
 	word_int = generator.strToIntArr(word_str.data());
