@@ -1,1 +1,0 @@
-main.exe 4 aq q q font
