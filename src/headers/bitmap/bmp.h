@@ -3,6 +3,11 @@
 #ifndef BMP_23082016
 #define BMP_23082016
 
+///структура для создания bmp файла
+/**
+хранит в себе header bmp файла и всю таку информацию
+*/
+
 struct Bmp{
 	BITMAPFILEHEADER bitmapFileHeader;
 	BITMAPINFOHEADER bitmapInfoHeader;

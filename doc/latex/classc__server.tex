@@ -1,0 +1,85 @@
+\hypertarget{classc__server}{}\section{Класс c\+\_\+server}
+\label{classc__server}\index{c\+\_\+server@{c\+\_\+server}}
+
+
+работает с сокетамми  
+
+
+
+
+{\ttfamily \#include $<$server.\+h$>$}
+
+\subsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{classc__server_a270ba2fdfc82bc6f21b74c6542b6f358}{listen\+\_\+network} (int sleep\+\_\+time)
+\begin{DoxyCompactList}\small\item\em слушает заданный в config сокет, возвращает пришедшее сообщение \end{DoxyCompactList}\item 
+void \hyperlink{classc__server_aa7c934f59238687f22365e4c23dddfe4}{send\+\_\+to\+\_\+client} (const char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Отправляет данные клиенту \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Защищенные данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classc__server_a305b66761e4b9651c0ba560a1e69ef8d}\label{classc__server_a305b66761e4b9651c0ba560a1e69ef8d}} 
+const char $\ast$ {\bfseries ip}
+\item 
+\mbox{\Hypertarget{classc__server_a4d76974cc63d86fc24dbb18c4250cc43}\label{classc__server_a4d76974cc63d86fc24dbb18c4250cc43}} 
+int {\bfseries port}
+\item 
+\mbox{\Hypertarget{classc__server_a4c94800fcaaacf93d0affb17fabd7c18}\label{classc__server_a4c94800fcaaacf93d0affb17fabd7c18}} 
+char $\ast$ {\bfseries msg}
+\item 
+\mbox{\Hypertarget{classc__server_a3a7c7ff923ed0e5e3aabf5ab998809b1}\label{classc__server_a3a7c7ff923ed0e5e3aabf5ab998809b1}} 
+W\+S\+A\+D\+A\+TA {\bfseries wsa\+Data}
+\item 
+\mbox{\Hypertarget{classc__server_a634549f8816a35a96eb90209dd2f704c}\label{classc__server_a634549f8816a35a96eb90209dd2f704c}} 
+S\+O\+C\+K\+ET {\bfseries Listen}
+\item 
+\mbox{\Hypertarget{classc__server_ae0a0a62d1156f11ff3079aa4d06a25c8}\label{classc__server_ae0a0a62d1156f11ff3079aa4d06a25c8}} 
+S\+O\+C\+K\+ET {\bfseries Connect}
+\item 
+\mbox{\Hypertarget{classc__server_a146026c08540d34c2cdc99262b285b5f}\label{classc__server_a146026c08540d34c2cdc99262b285b5f}} 
+S\+O\+C\+K\+A\+D\+D\+R\+\_\+\+IN {\bfseries Server}
+\end{DoxyCompactItemize}
+
+
+\subsection{Подробное описание}
+работает с сокетамми 
+
+используется дл ясвязи с клиентом через winsoc2 
+
+\subsection{Методы}
+\mbox{\Hypertarget{classc__server_a270ba2fdfc82bc6f21b74c6542b6f358}\label{classc__server_a270ba2fdfc82bc6f21b74c6542b6f358}} 
+\index{c\+\_\+server@{c\+\_\+server}!listen\+\_\+network@{listen\+\_\+network}}
+\index{listen\+\_\+network@{listen\+\_\+network}!c\+\_\+server@{c\+\_\+server}}
+\subsubsection{\texorpdfstring{listen\+\_\+network()}{listen\_network()}}
+{\footnotesize\ttfamily char $\ast$ c\+\_\+server\+::listen\+\_\+network (\begin{DoxyParamCaption}\item[{int}]{sleep\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+слушает заданный в config сокет, возвращает пришедшее сообщение 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em sleep\+\_\+time} & -\/ для настройки прослушки, сколько ждать перед следующей проверкой \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classc__server_aa7c934f59238687f22365e4c23dddfe4}\label{classc__server_aa7c934f59238687f22365e4c23dddfe4}} 
+\index{c\+\_\+server@{c\+\_\+server}!send\+\_\+to\+\_\+client@{send\+\_\+to\+\_\+client}}
+\index{send\+\_\+to\+\_\+client@{send\+\_\+to\+\_\+client}!c\+\_\+server@{c\+\_\+server}}
+\subsubsection{\texorpdfstring{send\+\_\+to\+\_\+client()}{send\_to\_client()}}
+{\footnotesize\ttfamily void c\+\_\+server\+::send\+\_\+to\+\_\+client (\begin{DoxyParamCaption}\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Отправляет данные клиенту 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em data} & -\/ отправляеые данные \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов класса находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+src/headers/network/server.\+h\end{DoxyCompactItemize}

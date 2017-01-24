@@ -6,7 +6,7 @@ Ver=2
 ObjFiles=
 Includes=
 Libs=
-PrivateResource=
+PrivateResource=KCaptcha_private.rc
 ResourceIncludes=
 MakeIncludes=
 Compiler=
@@ -25,28 +25,28 @@ UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
 Folders=
-IncludeVersionInfo=0
+IncludeVersionInfo=1
 SupportXPThemes=0
 CompilerSet=4
 CompilerSettings=0000000100000000001000000
-UnitCount=21
+UnitCount=23
 
 [VersionInfo]
-Major=1
+Major=0
 Minor=0
-Release=0
+Release=1
 Build=0
 LanguageID=1033
 CharsetID=1252
 CompanyName=
-FileVersion=1.0.0.0
+FileVersion=0.0.1.0
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=
-ProductVersion=1.0.0.0
+ProductVersion=0.0.1.0
 AutoIncBuildNr=0
 SyncProduct=1
 
@@ -241,7 +241,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit22]
-FileName=res\server.cpp
+FileName=headers\parsers\messageparser.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -262,6 +262,16 @@ BuildCmd=
 
 [Unit21]
 FileName=headers\network\server.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=headers\network\sharedmemory.h
 CompileCpp=1
 Folder=
 Compile=1

@@ -3,6 +3,8 @@
 #ifndef READBMP_H_23082016
 #define READBMP_H_23082016
 
+///используется для чтения bmp файла
+
 unsigned char* readBMP(const char* filename, int* _width, int* _height){
 	int i;
     FILE* f = fopen(filename, "rb");

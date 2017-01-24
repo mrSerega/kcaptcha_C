@@ -7,6 +7,8 @@ using namespace std;
 #ifndef BYTEALPHABET_H_25082016
 #define BYTEALPHABET_H_25082016
 
+///класс для работы с черно-белой капчей
+
 struct bytealphabet{
 	int _len;
 	int _letterlen;

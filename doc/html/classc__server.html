@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>KCaptcha: Класс c_server</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">KCaptcha
+   &#160;<span id="projectnumber">0.5</span>
+   </div>
+   <div id="projectbrief">make captcha</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classc__server.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-attribs">Защищенные данные</a> &#124;
+<a href="classc__server-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс c_server</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>работает с сокетамми  
+ <a href="classc__server.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="server_8h_source.html">server.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a270ba2fdfc82bc6f21b74c6542b6f358"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc__server.html#a270ba2fdfc82bc6f21b74c6542b6f358">listen_network</a> (int sleep_time)</td></tr>
+<tr class="memdesc:a270ba2fdfc82bc6f21b74c6542b6f358"><td class="mdescLeft">&#160;</td><td class="mdescRight">слушает заданный в config сокет, возвращает пришедшее сообщение  <a href="#a270ba2fdfc82bc6f21b74c6542b6f358">Подробнее...</a><br /></td></tr>
+<tr class="separator:a270ba2fdfc82bc6f21b74c6542b6f358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7c934f59238687f22365e4c23dddfe4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classc__server.html#aa7c934f59238687f22365e4c23dddfe4">send_to_client</a> (const char *data)</td></tr>
+<tr class="memdesc:aa7c934f59238687f22365e4c23dddfe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправляет данные клиенту  <a href="#aa7c934f59238687f22365e4c23dddfe4">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa7c934f59238687f22365e4c23dddfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Защищенные данные</h2></td></tr>
+<tr class="memitem:a305b66761e4b9651c0ba560a1e69ef8d"><td class="memItemLeft" align="right" valign="top"><a id="a305b66761e4b9651c0ba560a1e69ef8d"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>ip</b></td></tr>
+<tr class="separator:a305b66761e4b9651c0ba560a1e69ef8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d76974cc63d86fc24dbb18c4250cc43"><td class="memItemLeft" align="right" valign="top"><a id="a4d76974cc63d86fc24dbb18c4250cc43"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>port</b></td></tr>
+<tr class="separator:a4d76974cc63d86fc24dbb18c4250cc43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c94800fcaaacf93d0affb17fabd7c18"><td class="memItemLeft" align="right" valign="top"><a id="a4c94800fcaaacf93d0affb17fabd7c18"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>msg</b></td></tr>
+<tr class="separator:a4c94800fcaaacf93d0affb17fabd7c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a7c7ff923ed0e5e3aabf5ab998809b1"><td class="memItemLeft" align="right" valign="top"><a id="a3a7c7ff923ed0e5e3aabf5ab998809b1"></a>
+WSADATA&#160;</td><td class="memItemRight" valign="bottom"><b>wsaData</b></td></tr>
+<tr class="separator:a3a7c7ff923ed0e5e3aabf5ab998809b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a634549f8816a35a96eb90209dd2f704c"><td class="memItemLeft" align="right" valign="top"><a id="a634549f8816a35a96eb90209dd2f704c"></a>
+SOCKET&#160;</td><td class="memItemRight" valign="bottom"><b>Listen</b></td></tr>
+<tr class="separator:a634549f8816a35a96eb90209dd2f704c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a0a62d1156f11ff3079aa4d06a25c8"><td class="memItemLeft" align="right" valign="top"><a id="ae0a0a62d1156f11ff3079aa4d06a25c8"></a>
+SOCKET&#160;</td><td class="memItemRight" valign="bottom"><b>Connect</b></td></tr>
+<tr class="separator:ae0a0a62d1156f11ff3079aa4d06a25c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146026c08540d34c2cdc99262b285b5f"><td class="memItemLeft" align="right" valign="top"><a id="a146026c08540d34c2cdc99262b285b5f"></a>
+SOCKADDR_IN&#160;</td><td class="memItemRight" valign="bottom"><b>Server</b></td></tr>
+<tr class="separator:a146026c08540d34c2cdc99262b285b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>работает с сокетамми </p>
+<p>используется дл ясвязи с клиентом через winsoc2 </p>
+</div><h2 class="groupheader">Методы</h2>
+<a id="a270ba2fdfc82bc6f21b74c6542b6f358"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a270ba2fdfc82bc6f21b74c6542b6f358">&#9670;&nbsp;</a></span>listen_network()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * c_server::listen_network </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sleep_time</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>слушает заданный в config сокет, возвращает пришедшее сообщение </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sleep_time</td><td>- для настройки прослушки, сколько ждать перед следующей проверкой </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa7c934f59238687f22365e4c23dddfe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7c934f59238687f22365e4c23dddfe4">&#9670;&nbsp;</a></span>send_to_client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void c_server::send_to_client </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отправляет данные клиенту </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>- отправляеые данные </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>src/headers/network/<a class="el" href="server_8h_source.html">server.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classc__server.html">c_server</a></li>
+    <li class="footer">Создано системой
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
+</body>
+</html>

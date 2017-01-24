@@ -13,11 +13,23 @@ struct Generator{
 	const char* dict;
 	int dict_len;
 	
+	///конструктор
+	/**
+	\param[in] _dict - словарь
+	*/
+
 	Generator(const char* _dict);
 	//generator(char* _dict, char* _range);
 	
+	///задать ранг используемых символоав из словаря
+	/**
+	\param[in] _range - может иместь следующий вид:
+		first-last: a-f
+		перечесление: a,b,c,d,e,f
+	*/
 	void set_range(const char* _range);
 	int* strToIntArr(const char* word);
+	///генерирует слово заданнрй длины
 	int* genword(int len);
 };
 

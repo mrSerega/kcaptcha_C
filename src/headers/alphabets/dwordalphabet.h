@@ -13,12 +13,14 @@ using namespace std;
 #ifndef ALPHABET_23082016
 #define ALPHABET_23082016
 
+///класс для работы с цветной капчей
+
 struct dwordalphabet{
 public:
 	int _len;
 	int _lenOfLetter;
 	int _heightOfLetter;
-	dword** _alphabet;//TODO �������
+	dword** _alphabet;//TODO �������
 	
 	dwordalphabet(const char*  fontName){
 		//vars

@@ -1,0 +1,65 @@
+\hypertarget{struct_generator}{}\section{Структура Generator}
+\label{struct_generator}\index{Generator@{Generator}}
+\subsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_generator_a9967a0cb13e43132978c35543c2bbc9d}{Generator} (const char $\ast$\+\_\+dict)
+\begin{DoxyCompactList}\small\item\em конструктор \end{DoxyCompactList}\item 
+void \hyperlink{struct_generator_ac7602c8323c11fb1248cf6c464b80a58}{set\+\_\+range} (const char $\ast$\+\_\+range)
+\begin{DoxyCompactList}\small\item\em задать ранг используемых символоав из словаря \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_generator_af8fddf9b2176c7f5b25fdc5c11b5c91e}\label{struct_generator_af8fddf9b2176c7f5b25fdc5c11b5c91e}} 
+int $\ast$ {\bfseries str\+To\+Int\+Arr} (const char $\ast$word)
+\item 
+\mbox{\Hypertarget{struct_generator_ad808c2803bf926dd59bdd11db13ef7b1}\label{struct_generator_ad808c2803bf926dd59bdd11db13ef7b1}} 
+int $\ast$ \hyperlink{struct_generator_ad808c2803bf926dd59bdd11db13ef7b1}{genword} (int len)
+\begin{DoxyCompactList}\small\item\em генерирует слово заданнрй длины \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_generator_ad274dacd29666ce67d29fcb01d91cd5f}\label{struct_generator_ad274dacd29666ce67d29fcb01d91cd5f}} 
+const char $\ast$ {\bfseries dict}
+\item 
+\mbox{\Hypertarget{struct_generator_a7c59267af41502a76b0d0ecd60330939}\label{struct_generator_a7c59267af41502a76b0d0ecd60330939}} 
+int {\bfseries dict\+\_\+len}
+\end{DoxyCompactItemize}
+
+
+\subsection{Конструктор(ы)}
+\mbox{\Hypertarget{struct_generator_a9967a0cb13e43132978c35543c2bbc9d}\label{struct_generator_a9967a0cb13e43132978c35543c2bbc9d}} 
+\index{Generator@{Generator}!Generator@{Generator}}
+\index{Generator@{Generator}!Generator@{Generator}}
+\subsubsection{\texorpdfstring{Generator()}{Generator()}}
+{\footnotesize\ttfamily Generator\+::\+Generator (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+dict }\end{DoxyParamCaption})}
+
+
+
+конструктор 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em \+\_\+dict} & -\/ словарь \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Методы}
+\mbox{\Hypertarget{struct_generator_ac7602c8323c11fb1248cf6c464b80a58}\label{struct_generator_ac7602c8323c11fb1248cf6c464b80a58}} 
+\index{Generator@{Generator}!set\+\_\+range@{set\+\_\+range}}
+\index{set\+\_\+range@{set\+\_\+range}!Generator@{Generator}}
+\subsubsection{\texorpdfstring{set\+\_\+range()}{set\_range()}}
+{\footnotesize\ttfamily void Generator\+::set\+\_\+range (\begin{DoxyParamCaption}\item[{const char $\ast$}]{\+\_\+range }\end{DoxyParamCaption})}
+
+
+
+задать ранг используемых символоав из словаря 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em \+\_\+range} & -\/ может иместь следующий вид\+: first-\/last\+: a-\/f перечесление\+: a,b,c,d,e,f \\
+\hline
+\end{DoxyParams}
+
+
+Объявления и описания членов структуры находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+src/headers/genword.\+h\end{DoxyCompactItemize}

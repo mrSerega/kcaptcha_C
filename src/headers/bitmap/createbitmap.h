@@ -5,6 +5,13 @@
 #ifndef CREATEBITMAP_H_23082016
 #define CREATEBITMAP_H_23082016
 
+///создает Bmp файл
+/**
+/param[in] imageData - байтовое представление изображения
+/param[in] filename - имя файла
+/param[in] _bmp - класс для получения структурной информации для генерации bmp файла
+*/
+
 void createBitmap( byte * imageData, const char * filename, Bmp* _bmp){
     std::ofstream file( filename, std::fstream::binary );
 

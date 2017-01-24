@@ -4,11 +4,12 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = ../build/main.o
-LINKOBJ  = ../build/main.o
+RES      = ../build/KCaptcha_private.res
+OBJ      = ../build/main.o $(RES)
+LINKOBJ  = ../build/main.o $(RES)
 LIBS     = -L"G:/soft/Dev-Cpp/MinGW64/lib32" -L"G:/soft/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc ../../../../soft/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32/libws2_32.a -m32 -g3
 INCS     = -I"G:/soft/Dev-Cpp/MinGW64/include" -I"G:/soft/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"G:/soft/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
-CXXINCS  = -I"G:/soft/Dev-Cpp/MinGW64/include" -I"G:/soft/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"G:/soft/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"G:/soft/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+CXXINCS  = -I"G:/soft/Dev-Cpp/MinGW64/include" -I"G:/soft/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"G:/soft/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"G:/soft/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"C:/Boost/include/boost-1_62"
 BIN      = ../build/KCaptcha.exe
 CXXFLAGS = $(CXXINCS) -m32 -g3
 CFLAGS   = $(INCS) -m32 -g3
@@ -26,3 +27,7 @@ $(BIN): $(OBJ)
 
 ../build/main.o: main.cpp
 	$(CPP) -c main.cpp -o ../build/main.o $(CXXFLAGS)
+
+../build/KCaptcha_private.res: KCaptcha_private.rc 
+	$(WINDRES) -i KCaptcha_private.rc -F pe-i386 --input-format=rc -o ../build/KCaptcha_private.res -O coff 
+

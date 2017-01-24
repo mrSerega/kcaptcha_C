@@ -3,6 +3,10 @@
 
 typedef unsigned long dword;
 
+//console messages
+#define MSG_SHUTDOWN "application will shutdown right now.\n"
+#define MSG_MAKE "creating...\n"
+
 #define FONTS_FOLDER_STR "fonts"
 #define SLASH_STR "\\"
 #define BITMAP_FILE_TYPE_STR ".bmp"
@@ -20,6 +24,7 @@ typedef unsigned long dword;
 #define COMMON_SECTION_NAME "common"
 #define NETWORK_SECTION_NAME "network"
 
+#define SLEEP_TIME "sleep_time"
 #define IP_VARIABLE_NAME "ip"
 #define PORT_VARIABLE_NAME "port" 
 #define RANGE_VARIABLE_NAME "range"
